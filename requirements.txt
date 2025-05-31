@@ -1,0 +1,23 @@
+## 🧾 Key Raspberry Pi Commands Used
+```bash
+# Install packages
+sudo apt update
+sudo apt install python3-pip tshark tcpdump -y
+pip3 install pandas numpy scikit-learn joblib
+
+# Static IP configuration
+sudo nano /etc/dhcpcd.conf
+
+# Check network interfaces
+ip a
+
+# Capture packets
+sudo tcpdump -i eth1 -w traffic.pcap
+sudo tshark -i eth1 -T fields -e frame.time_epoch -e ip.src -e ip.dst -e ip.len -e ip.proto > network_data.csv
+
+# Run scripts
+python3 train_model.py
+python3 detect_anomalies.py
+
+# View anomaly results
+cat anomalies_detected.csv
